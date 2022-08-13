@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+body {
+    height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+
+}
+main {
+    height: 100%;
+    display: flex;
+}
+div.projects-bar {
+    width: 230px;
+    background-color: #1caefc;
+}
+div.projects-bar > h1 {
+    margin: 0;
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+}
+div.projects-bar > .projects {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+div.projects-bar > .projects > .project {
+    text-align: center;
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 56px;
+    margin-bottom: 10px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 7px;
+    background-color: #0070f3;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+}
+div.projects-bar > .projects > .project:hover{
+    background: rgba(0,118,255,0.9);
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+}
+div.projects-bar > .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.projects-bar > .btn > #add-project {
+    margin: auto;
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 56px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 16px;
+    background: #fff;
+    color: #696969;
+    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+}
+div.projects-bar > .btn > #add-project:hover{
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 6px 20px rgb(93 93 93 / 23%);
+}
+
+
+
+
+div.content {
+    flex-grow: 1;
+}
+div.content > #project-name {
+    text-align: center;
+    margin: 20px 0;
+}
+div.content > .tasks {
+    background-color: #1caefc;
+    min-height: calc(100vh - 98px);
+    margin: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+div.content > .tasks > .task {
+    width: 95%;
+    height: 50px;
+    background-color: #0070f3;
+    margin-top: 15px;
+    border-radius: 5px;
+    display: flex;
+    color: #fff;
+    text-align: left;
+}
+div.content > .tasks > .task > #title {
+    margin-left: 20px;
+    margin-right: 30px;
+}
+div.content > .tasks > .task > #description {
+    margin-left: 20px;
+    margin-right: auto;
+}
+div.content > .tasks > .task > #priority {
+    margin-right: 50px;
+}
+div.content > .tasks > .task > #date {
+    margin-right: 50px;
+}
+div.content > .tasks > .task > #remove-task {
+    margin-right: 10px;
+    cursor: pointer;
+}
