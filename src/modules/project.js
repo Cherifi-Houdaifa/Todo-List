@@ -1,3 +1,5 @@
+import { loadTasks } from "./task";
+
 class Project {
     constructor (name) {
         this.name = name;
@@ -11,4 +13,13 @@ class Project {
     }
 }
 
-export default Project;
+const loadProject = (project) => {
+    const projectName = document.querySelector("#project-name");
+    projectName.textContent = project.name;
+
+    loadTasks(project);
+}
+
+export {
+    Project,
+}

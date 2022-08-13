@@ -9,7 +9,6 @@ body {
 main {
     height: 100%;
     display: flex;
-    filter: blur(4px);
 }
 div.projects-bar {
     width: 230px;
@@ -114,9 +113,6 @@ div.content > .tasks > .task > #description {
     margin-left: 20px;
     margin-right: auto;
 }
-div.content > .tasks > .task > #priority {
-    margin-right: 50px;
-}
 div.content > .tasks > .task > #date {
     margin-right: 50px;
 }
@@ -206,6 +202,71 @@ div.content > .tasks > #add-task:hover{
     transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;    
 }
 #add-task-popup > .inputs > input[type="button"]:hover{
+    background: rgba(0,118,255,0.9);
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+}
+
+#add-project-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+#add-project-popup > h1 {
+    text-align: center;
+
+}
+#add-project-popup > .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#add-project-popup > .inputs > input:not([type="button"]) {
+    
+    display: inline-block;
+    padding: 0 16px 0 12px;
+    outline: none;
+    width: 100%;
+    line-height: 30px;
+    height: 32px;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    background-color: #fff;
+    color: rgb(8, 7, 7);
+    transition: border .1s linear,background-color .1s linear;
+    width: 230px;
+    margin: 15px 0;
+
+}
+#add-project-popup > .inputs > input:focus:not([type="button"]) {
+    border-color: #1b96ff;
+    color: var(--sds-c-input-text-color-focus);
+    box-shadow: rgb(1, 118, 211) 0px 0px 3px 0px;
+}
+#add-project-popup > .inputs > input[type="button"] {
+    
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 56px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 7px;
+    background-color: #0070f3;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+    width: 200px;
+    transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;    
+}
+#add-project-popup > .inputs > input[type="button"]:hover{
     background: rgba(0,118,255,0.9);
     box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
 }
