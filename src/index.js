@@ -13,7 +13,13 @@ export {
 
 window.addEventListener("load", () => {
     const projectsJson = JSON.parse(localStorage.getItem("projects"));
-    projects = projectsJson;
+    if (projectsJson == null) {
+        projects.push(new Project("default"));
+        updateStorage()
+    }
+    else {
+        projects = projectsJson;
+    }
     for (let i = 0; i < projects.length; i++) {
         const project = projects[i]
         project.addTask = Project.prototype.addTask;
