@@ -116,7 +116,7 @@ div.content > .tasks > .task > #description {
 div.content > .tasks > .task > #date {
     margin-right: 50px;
 }
-div.content > .tasks > .task > #remove-task {
+div.content > .tasks > .task > .remove-task {
     margin-right: 10px;
     cursor: pointer;
 }

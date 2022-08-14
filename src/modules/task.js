@@ -9,6 +9,7 @@
 
 
 import image from "../x.svg";
+import { removeTask } from "./funcs";
 
 class Task {
     constructor (title, description, dueDate) {
@@ -41,7 +42,7 @@ const loadTasks = (project) => {
         
         let img = document.createElement("img");
         img.setAttribute("src", image);
-        img.setAttribute("id", "remove-task");
+        img.setAttribute("class", "remove-task");
 
         taskDiv.appendChild(title);
         taskDiv.appendChild(description);
@@ -49,7 +50,8 @@ const loadTasks = (project) => {
         taskDiv.appendChild(img);
 
 
-        tasks.appendChild(taskDiv);
+        tasks.insertBefore(taskDiv, document.querySelector("#add-task"));
+        removeTask(task);
     }
 }
 
