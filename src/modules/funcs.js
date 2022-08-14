@@ -3,17 +3,14 @@ import { Task } from "./task";
 import image from "../x.svg";
 import { projects, currentProject } from "../index";
 
-const addProject = (name) => {
-    const project = new Project(name);
+const addProject = (project) => {
     const projectsDiv = document.querySelector(".projects");
     const projectDiv = document.createElement("div");
     
     projectDiv.classList.add("project");
-    projectDiv.textContent = name
+    projectDiv.textContent = project.name;
 
     projectsDiv.insertBefore(projectDiv, document.querySelector("btn"));
-    
-    return project;
 }
 const addTask = (title, description, date) => {
     const task = new Task(title, description, date);
@@ -45,6 +42,10 @@ const addTask = (title, description, date) => {
     TasksDiv.insertBefore(taskDiv, document.querySelector("#add-task"));
     return task;
 }
+const updateStorage = () => {
+    const projectsJson = JSON.stringify(projects);
+    localStorage.setItem("projects", projectsJson);
+}
 const removeTask = (task) => {
     const taskDiv = document.querySelector("body > main > div.content > div > div:nth-last-child(2)");
     const removeTaskBtn = taskDiv.querySelector("img");
@@ -52,11 +53,12 @@ const removeTask = (task) => {
         const tasksDiv = document.querySelector("body > main > div.content > div");
         tasksDiv.removeChild(taskDiv);
         projects[projects.indexOf(currentProject)].removeTask(task);
-        console.log(projects[projects.indexOf(currentProject)])
+        updateStorage()
     });
 }
 export {
     addProject,
     addTask,
     removeTask,
+    updateStorage
 }

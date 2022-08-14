@@ -1,8 +1,8 @@
-import { Task, loadTasks } from "./modules/task";
 import { Project, loadProject } from "./modules/project";
-import { addProject, addTask, removeTask } from "./modules/funcs";
+import { addProject, addTask, removeTask, updateStorage } from "./modules/funcs";
 import "./modules/popup";
 import "./styles/style.css";
+
 
 let projects = [];
 let currentProject = null;
@@ -10,6 +10,38 @@ export {
     projects, 
     currentProject
 }
+
+window.addEventListener("load", () => {
+    const projectsJson = JSON.parse(localStorage.getItem("projects"));
+    projects = projectsJson;
+    for (let i = 0; i < projects.length; i++) {
+        const project = projects[i]
+        project.addTask = Project.prototype.addTask;
+        project.removeTask = Project.prototype.removeTask;
+        addProject(project);
+        const projectDiv = document.querySelector(".projects div:last-child");
+        projectDiv.addEventListener("click", () => {
+            currentProject = project;
+            loadProject(projects[projects.indexOf(currentProject)]);
+        });
+
+        // when dbl click the project will be removed
+        projectDiv.addEventListener("dblclick", (e) => {
+            if (projects.length <= 1) {
+                alert("You Can't Remove All Projects");
+                return;
+            }
+            projects.splice(projects.indexOf(project), 1);
+            const projectsDiv = document.querySelector("body > main > div.projects-bar > div.projects");
+            projectsDiv.removeChild(projectDiv);
+            loadProject(projects[0]);
+            updateStorage()
+        });
+    }
+    currentProject = projects[0];
+    loadProject(projects[projects.indexOf(currentProject)]);
+});
+
 const addProjectBtn = document.querySelector("#add-project-popup > div > input[type=button]:nth-child(2)");
 addProjectBtn.addEventListener("click", () => {
     const projectName = document.querySelector("#add-project-popup > div > input[type=text]:nth-child(1)");
@@ -17,13 +49,29 @@ addProjectBtn.addEventListener("click", () => {
         alert("You Must Provide A Project Name");
         return;
     }
-    const project = addProject(projectName.value);
+    const project = new Project(projectName.value)
+    addProject(project);
     const projectDiv = document.querySelector(".projects div:last-child");
     projects.push(project);
     projectDiv.addEventListener("click", () => {
         currentProject = project;
         loadProject(projects[projects.indexOf(currentProject)]);
     });
+
+    // when dbl click the project will be removed
+    projectDiv.addEventListener("dblclick", (e) => {
+        if (projects.length <= 1) {
+            alert("You Can't Remove All Projects");
+            return;
+        }
+        projects.splice(projects.indexOf(project), 1);
+        const projectsDiv = document.querySelector("body > main > div.projects-bar > div.projects");
+        projectsDiv.removeChild(projectDiv);
+        loadProject(projects[0]);
+        updateStorage()
+    });
+    updateStorage()
+
     projectName.value = "";
     const projectPopup = document.querySelector("#add-project-popup");
     projectPopup.toggleAttribute("hidden");
@@ -40,7 +88,7 @@ addTaskBtn.addEventListener("click", () => {
     }
     const task = addTask(title.value, description.value, date.value);
     projects[projects.indexOf(currentProject)].addTask(task);
-
+    updateStorage()
     removeTask(task)
     const taskPopup = document.querySelector("#add-task-popup");
     taskPopup.toggleAttribute("hidden");
